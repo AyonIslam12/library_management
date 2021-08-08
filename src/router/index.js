@@ -12,7 +12,7 @@ import Protfolio from '../views/frontend/protfolio';
 
 const routes = [
   {
-    path: '/',
+    path: '/dashboard',
     name: 'dashboard',
     component: Dashboard,
   },
