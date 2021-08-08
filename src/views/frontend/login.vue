@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div class="page-wrapper">
-    <div class="auth-bg">
-        <div class="authentication-box">
+    <div class="authentication-box">
             <h4 class="text-center">LOGIN</h4>
+            <router-link :to="{name:'signup'}">SignUp</router-link>
             <h6 class="text-center">Enter your Username and Password For Login or Signup</h6>
             <div class="card mt-4 p-4 mb-0">
                 <form class="theme-form">
@@ -26,16 +25,7 @@
                     </div>
                 </form>
             </div>
-        </div>
     </div>
-    <div class="auth-bg-effect">
-        <div class="first-effect"></div>
-        <div class="second-effect"></div>
-        <div class="third-effect"></div>
-        <div class="fourth-effect"></div>
-    </div>
-
-</div>
   </div>
 </template>
 

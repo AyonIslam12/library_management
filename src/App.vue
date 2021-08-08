@@ -4,11 +4,6 @@
       <dashboard></dashboard>
     </div>
     <div v-else>
-     <!--  <div id="nav">
-        <router-link :to="{path: 'login'}">login</router-link>| 
-        <router-link :to="{path: 'signup'}">signup</router-link>| 
-        <router-link :to="{path: 'protfolio'}">protfolio</router-link>
-      </div> -->
       <router-view/>
     </div>
     
@@ -21,7 +16,7 @@ export default {
   components: { dashboard },
   data: function(){
     return{
-      check_auth: false,
+      check_auth: true,
     }
   },
 

@@ -5,6 +5,7 @@ import admin from '../views/backend/admin';
 import student from '../views/backend/student';
 import management from '../views/backend/management';
 //frontend page
+import authLayout from '../views/frontend/authLayout';
 import Login from '../views/frontend/login';
 import Signup from '../views/frontend/signup';
 import Protfolio from '../views/frontend/protfolio';
@@ -32,17 +33,24 @@ const routes = [
     component: management,
   },
   {
-    path: '/login',
-    name: 'login',
-    component: Login,
-   
+    path: '/auth',
+    component: authLayout,
+    children: [
+      {
+        path: '/login',
+        name: 'login',
+        component: Login,
+       
+      },
+      {
+        path: '/signup',
+        name: 'signup',
+        component: Signup,
+       
+      },
+    ],
   },
-  {
-    path: '/signup',
-    name: 'signup',
-    component: Signup,
-   
-  },
+ 
   {
     path: '/protfolio',
     name: 'protfolio',
