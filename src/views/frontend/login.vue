@@ -18,6 +18,12 @@
                         <input class="form-check-input" id="checkbox1" type="checkbox">
                         <label class="form-check-label" for="checkbox1">Remember me</label>
                     </div>
+                    <div class="form-group">
+                        <button class="btn btn-success m-1" @click.prevent="login(true,'admin')">Admin</button>
+                        <button class="btn btn-success m-1" @click.prevent="login(true,'student')">Student</button>
+                        <button class="btn btn-success m-1" @click.prevent="login(true,'management')">Management</button>
+                      
+                    </div>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <button type="submit" class="btn btn-primary">LOGIN</button>
@@ -30,7 +36,20 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
+    methods:{
+        ...mapMutations([
+            'set_auth_role_name',
+            'set_check_auth_status',
+        ]),
+        login: function(status,role_name){
+            this.set_auth_role_name(role_name);
+            this.set_check_auth_status(status);
+
+        }
+
+    }
 
 }
 </script>

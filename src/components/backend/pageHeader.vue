@@ -138,8 +138,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <i class="icon-power-off"></i>
+                                    <a href="#" @click.prevent="get_logout()">
+                                       <i class="fas fa-sign-out-alt text-danger"></i>
                                         Logout
                                     </a>
                                 </li>
@@ -155,8 +155,18 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
     name:'page-header',
+    methods:{
+        ...mapMutations([
+            'set_logout',  
+        ]),
+         get_logout: function(){
+             this.$router.replace({name:'login'});
+             this.set_logout();    
+        }
+    }
 }
 </script>
 

@@ -7,24 +7,59 @@
             <h6 class="mt-3 f-12">Johan Deo</h6>
         </div>
         <ul class="sidebar-menu">
-            <li>
-                <div class="sidebar-title">General</div>
+            <li v-if="get_auth_role_name == 'admin'">
+                <div class="sidebar-title">Adnin</div>
                 <a href="javascript:void(0)" class="sidebar-header">
-                    <i class="icon-desktop"></i><span>Dashboard</span>
+                    <i class="fas fa-tachometer-alt"></i><span>Pages</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
                 <ul class="sidebar-submenu">
-                    <li><a href="index.html"><i class="fa fa-angle-right"></i>Default</a></li>
-                    <li><a href="ecommerce.html"><i class="fa fa-angle-right"></i>E-commerce</a></li>
-                    <li><a href="business.html"><i class="fa fa-angle-right"></i>Business<span class="badge badge-secondary ms-3">Tour</span></a></li>
-                    <li><a href="crm.html"><i class="fa fa-angle-right"></i>CRM</a></li>
+                    <li>
+                        <router-link :to="{name: 'admin'}"><i class="fa fa-angle-right"></i>Home</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{name: 'users'}"><i class="fa fa-angle-right"></i>Users</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{name: 'bookList'}"><i class="fa fa-angle-right"></i>Book List</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{name: 'bookEntry'}"><i class="fa fa-angle-right"></i>Book Entry</router-link>
+                    </li>
                 </ul>
             </li>
-             <div id="nav">
-        <router-link :to="{path: 'admin'}">admin</router-link>| 
-        <router-link :to="{path: 'student'}">student</router-link>| 
-        <router-link :to="{path: 'management'}">management</router-link>
-      </div>
+            <li v-if="get_auth_role_name == 'management'">
+                <div class="sidebar-title">Management</div>
+                <a href="javascript:void(0)" class="sidebar-header">
+                   <i class="fas fa-tasks"></i><span>Pages</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <router-link :to="{name: 'management'}"><i class="fa fa-angle-right"></i>Home</router-link>
+                    </li>
+                  
+                </ul>
+            </li>
+            <li v-if="get_auth_role_name == 'student'">
+                <div class="sidebar-title">Students</div>
+                <a href="javascript:void(0)" class="sidebar-header">
+                   <i class="fas fa-user-graduate"></i><span>Pages</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <router-link :to="{path: 'student'}"><i class="fa fa-angle-right"></i>Home</router-link>
+                    </li>
+
+                      <li>
+                        <router-link :to="{name: 'studentBookList'}"><i class="fa fa-angle-right"></i>Book List</router-link>
+                    </li>
+                </ul>
+            </li>
+             <li class="mt-3">
+                <a href="#" @click.prevent="get_logout()"><i class="fas fa-sign-out-alt text-danger"></i>Logout</a>
+            </li>
         </ul>
      <!--    <div class="sidebar-widget text-center">
             <div class="sidebar-widget-top">
@@ -42,8 +77,63 @@
 </template>
 
 <script>
+import $ from "jquery";
+import { mapGetters, mapMutations } from 'vuex';
 export default {
     name:'page-sidebar',
+    created:function(){
+        this.init_jq();
+    },
+    methods:{
+        ...mapMutations([
+            'set_logout',
+        ]),
+        get_logout:function(){
+            this.$router.replace({name:'login'});
+            this.set_logout();
+        },
+        init_jq:function(){
+            "use strict";
+            setTimeout(() => {
+  $.sidebarMenu = function(menu) {
+    var animationSpeed = 300,
+    subMenuSelector = '.sidebar-submenu';
+    $(menu).on('click', 'li a', function() {
+      var $this = $(this);
+      var checkElement = $this.next();
+      if (checkElement.is(subMenuSelector) && checkElement.is(':visible')) {
+        checkElement.slideUp(animationSpeed, function() {
+          checkElement.removeClass('menu-open');
+        });
+        checkElement.parent("li").removeClass("active");
+      }
+      else if ((checkElement.is(subMenuSelector)) && (!checkElement.is(':visible'))) {
+        var parent = $this.parents('ul').first();
+        var ul = parent.find('ul:visible').slideUp(animationSpeed);
+        ul.removeClass('menu-open');
+        var parent_li = $this.parent("li");
+        checkElement.slideDown(animationSpeed, function() {
+        checkElement.addClass('menu-open');
+        parent.find('li.active').removeClass('active');
+        parent_li.addClass('active');
+        });
+      }
+    });
+  }
+  $(".mobile-sidebar .switch-state").click(function(){
+    $(".page-body-wrapper").toggleClass("sidebar-close");
+  });
+  $.sidebarMenu($('.sidebar-menu'));
+
+ }, 100);
+        }
+    },
+    computed:{
+        ...mapGetters([
+            'get_auth_role_name',
+            'get_check_auth_status',
+        ])
+    }
 }
 </script>
 
