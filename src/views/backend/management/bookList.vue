@@ -14,8 +14,6 @@
                   <th>Image</th>
                   <th>Book Name</th>
                   <th>Author</th>
-                  <th>Date</th>
-                  <th>Return Date</th>
                   <th>Section</th>
                   <th class="text-center" style="width: 20%">Action</th>
                 </tr>
@@ -28,8 +26,6 @@
                   </td>
                   <td>Book</td>
                   <td>Mr.Stark</td>
-                  <td>21,mar 2021</td>
-                  <td>26,mar 2021</td>
                   <td>B Block</td>
                   <td>
                     <div class="d-flex justify-content-end">
@@ -52,13 +48,12 @@
 
 <script>
 export default {
-  name: "bookList",
+  name: "admin-base",
   methods: {
     getData: function () {},
   },
 };
 </script>
-
 <style>
 
 </style>

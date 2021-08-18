@@ -15,7 +15,7 @@
                 </a>
                 <ul class="sidebar-submenu">
                     <li>
-                        <router-link :to="{name: 'admin'}"><i class="fa fa-angle-right"></i>Home</router-link>
+                        <router-link :to="{name: 'adminProfile'}"><i class="fa fa-angle-right"></i>Home</router-link>
                     </li>
                     <li>
                         <router-link :to="{name: 'users'}"><i class="fa fa-angle-right"></i>Users</router-link>
@@ -26,6 +26,13 @@
                     <li>
                         <router-link :to="{name: 'bookEntry'}"><i class="fa fa-angle-right"></i>Book Entry</router-link>
                     </li>
+                    <li>
+                        <router-link :to="{name: 'entryList'}"><i class="fa fa-angle-right"></i>Entry List</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{name: 'newEntry'}"><i class="fa fa-angle-right"></i>New Entry</router-link>
+                    </li>
+                 
                 </ul>
             </li>
             <li v-if="get_auth_role_name == 'management'">
@@ -36,7 +43,16 @@
                 </a>
                 <ul class="sidebar-submenu">
                     <li>
-                        <router-link :to="{name: 'management'}"><i class="fa fa-angle-right"></i>Home</router-link>
+                        <router-link :to="{name: 'managementProfile'}"><i class="fa fa-angle-right"></i>Home</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{name: 'managementBookList'}"><i class="fa fa-angle-right"></i>Book List</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{name: 'managementEntryList'}"><i class="fa fa-angle-right"></i>Entry List</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{name: 'managementNewEntry'}"><i class="fa fa-angle-right"></i>New Entry</router-link>
                     </li>
                   
                 </ul>
@@ -49,7 +65,7 @@
                 </a>
                 <ul class="sidebar-submenu">
                     <li>
-                        <router-link :to="{path: 'student'}"><i class="fa fa-angle-right"></i>Home</router-link>
+                        <router-link :to="{name: 'studentProfile'}"><i class="fa fa-angle-right"></i>Home</router-link>
                     </li>
 
                       <li>
